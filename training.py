@@ -65,5 +65,5 @@ plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.title("Confusion Matrix")
 plt.show()
-print("Validation Label Distribution:", Counter(y_val))
+
 print(classification_report(y_val, y_pred, digits=4))
