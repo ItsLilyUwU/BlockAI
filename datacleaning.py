@@ -2,7 +2,8 @@ from PIL import Image
 import numpy as np
 import sys
 import os
-import csv# default format can be changed as needed
+import csv
+# default format can be changed as needed
 def createFileList(myDir, format='.png'):
     fileList = []
     print(myDir)
