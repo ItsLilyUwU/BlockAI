@@ -41,7 +41,16 @@ X_train_augmented = np.vstack([X_train, augment_data(X_train)])
 y_train_augmented = np.hstack([y_train, y_train])
 
 #define model
-model = keras.models.load_model("tetris_model.h5")
+model = keras.Sequential([
+    layers.Conv2D(32, (3, 3), activation="relu", input_shape=(48, 48, 1)),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(64, (3, 3), activation="relu"),
+    layers.MaxPooling2D((2, 2)),
+    layers.Flatten(),
+    layers.Dense(64, activation="relu"),
+    layers.Dropout(0.5),
+    layers.Dense(7, activation="softmax")
+])
 
 #compile model
 model.compile(
@@ -59,7 +68,7 @@ print("Unique Labels:", np.unique(y_train))
 history = model.fit(
     X_train_augmented, y_train_augmented,  
     validation_data=(X_val, y_val), 
-    epochs=50,  
+    epochs=35,  
     batch_size=16,  
     class_weight=class_weights
 )
